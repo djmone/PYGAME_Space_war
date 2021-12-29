@@ -5,6 +5,7 @@ import pygame.font
 class Score():
     
     def __init__(self, screen, stats, speedAli):
+        ###Инициализация###
         self.screen = screen
         self.screen_rect = screen.get_rect()
         self.stats = stats
@@ -21,6 +22,7 @@ class Score():
 
 
     def image_now_score(self):
+        ###Создание текста со счётом###
         self.score_im = self.font.render(str(self.stats.score), True, self.text_color, (0,0,0))
         self.score_rect = self.score_im.get_rect()
         self.score_rect.right = self.screen_rect.right - 300
@@ -29,30 +31,35 @@ class Score():
 
 
     def image_now_HScore(self):
+        ###Создание текста со Лучшим счётом###
         self.HS_image = self.font.render(str(self.stats.HScore), True, self.text_color, (0,0,0))
         self.HS_rect = self.HS_image.get_rect()
         self.HS_rect.right = self.screen_rect.right - 400
         self.HS_rect.top = 145
 
     def imgage_HS_img(self):
+        ###Создание изображения###
         self.imageHS = pygame.image.load('Image/HiScore.png')
         self.imageHS_rect = self.imageHS.get_rect()
         self.imageHS_rect.right = self.screen_rect.right - 470
         self.imageHS_rect.top = 145
 
     def imgage_HP_img(self):
+        ###Создание изображения###
         self.imageHP = pygame.image.load('Image/HP.png')
         self.imageHP_rect = self.imageHP.get_rect()
         self.imageHP_rect.right = self.screen_rect.right - 650
         self.imageHP_rect.top = 146
 
     def image_now_HP(self):
+        ###Создание текста с жизними###
         self.HP_image = self.font.render(str(self.stats.gun_live), True, self.text_color, (0,0,0))
         self.HP_rect = self.HP_image.get_rect()
         self.HP_rect.right = self.screen_rect.right - 630
         self.HP_rect.top = 145
 
     def Your_LVL(self, speedAli):
+        ###Создание текста с номер уровня###
         self.LVL_image = self.font.render('LVL:' , True, self.text_color, (0,0,0))
         self.LVL_rect = self.LVL_image.get_rect()
         self.LVL_rect.right = self.screen_rect.right - 800
@@ -64,6 +71,7 @@ class Score():
         self.LVLN_rect.top = 145
 
     def You_Lose(self):
+        ###Создание текста после проигреша###
         self.LoseR_image = self.fontLose.render('PRESS (R) TO RESTART' , True, self.text_color, (0,0,0))
         self.LoseR_rect = self.LoseR_image.get_rect()
         self.LoseR_rect.centerx = self.screen_rect.centerx
@@ -79,7 +87,22 @@ class Score():
         self.LoseS_rect.centerx = self.screen_rect.centerx
         self.LoseS_rect.top = 356
 
+
+    def pouse_text(self):
+        ###Создание текста для паузы###
+        self.pouse_image = self.fontLose.render('PRESS (ENTER) TO UNPAUSE' , True, self.text_color, (0,0,0))
+        self.pouse_rect = self.pouse_image.get_rect()
+        self.pouse_rect.centerx = self.screen_rect.centerx
+        self.pouse_rect.top = 300
+
+        self.imagePouse = pygame.image.load('Image/pause.png')
+        self.imagePouse_rect = self.imagePouse.get_rect()
+        self.imagePouse_rect.centerx = self.screen_rect.centerx
+        self.imagePouse_rect.top = 350
+
+
     def draw_score(self):
+        ###Размещение всех созданных изображений на экране###
         self.screen.blit(self.score_im, self.score_rect)
         self.screen.blit(self.HS_image, self.HS_rect)
         self.screen.blit(self.imageHS, self.imageHS_rect)
@@ -89,7 +112,13 @@ class Score():
         self.screen.blit(self.LVLN_image, self.LVLN_rect)
         
         
+    def draw_pause(self):
+        ###Размещение текста паузы на экране###
+        self.screen.blit(self.pouse_image, self.pouse_rect)
+        self.screen.blit(self.imagePouse, self.imagePouse_rect)
+        
     def draw_lose(self):
+        ###Размещение текста проигреша на экране###
         self.screen.blit(self.Lose_image, self.Lose_rect)
         self.screen.blit(self.LoseS_im, self.LoseS_rect)
         self.screen.blit(self.LoseR_image, self.LoseR_rect)
