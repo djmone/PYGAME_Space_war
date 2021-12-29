@@ -5,7 +5,7 @@ from Raiting import Score
 
 class Alien(pygame.sprite.Sprite):
 
-    def __init__(self, screen ): #Ïàðàìåòðû Èíîïëàíåòÿíèíà
+    def __init__(self, screen ): #ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð˜Ð½Ð¾Ð¿Ð»Ð°Ð½ÐµÑ‚ÑÐ½Ð¸Ð½Ð°
         super().__init__()
         self.screen = screen
         self.image = pygame.image.load('Image/ship 1-1.png')
@@ -60,7 +60,7 @@ class Alien(pygame.sprite.Sprite):
             self.speed = speedAli + 1.8
 
 
-        ###Äâèæåíèå âëåâî, âïðàâî è âíèç###
+        ###Ð”Ð²Ð¸Ð¶ÐµÐ½Ð¸Ðµ Ð²Ð»ÐµÐ²Ð¾, Ð²Ð¿Ñ€Ð°Ð²Ð¾ Ð¸ Ð²Ð½Ð¸Ð·###
         if self.Right:
             self.x += self.speed
             self.RLposition += self.speed
@@ -77,7 +77,7 @@ class Alien(pygame.sprite.Sprite):
                 self.Right = True
                 self.y +=20
                 self.RLposition=0
-        ###Àíèìàöèÿ êîðàáëåé###
+        ###ÐÐ½Ð¸Ð¼Ð°Ñ†Ð¸Ñ ÐºÐ¾Ñ€Ð°Ð±Ð»ÐµÐ¹###
         self.AnimatorTime+=1
         self.rect.y = self.y
         if self.AnimatorTime >=20 and self.AnimatorChecker == False:
