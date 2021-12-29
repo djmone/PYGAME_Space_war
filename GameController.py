@@ -2,12 +2,13 @@ import pygame, sys
 from bullet import Bullet
 from AlienLogic  import Alien
 from MyStatistic import Statistic
+import time
 
 
 
 
 
-def events(screen, gun, bullets,stats,Shot_Sound):
+def events(screen, gun, bullets,stats,Shot_Sound,sc):
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -19,7 +20,8 @@ def events(screen, gun, bullets,stats,Shot_Sound):
                 gun.MoveLeft = True
             if event.key == pygame.K_r and stats.res:
                 stats.GoRes = True
-
+            if event.key == pygame.K_ESCAPE:
+                pause(sc)
             
             if event.key == pygame.K_SPACE and not(stats.StopB):
                 if len(bullets)<=2: #2
@@ -77,7 +79,21 @@ def Ckeck_HScore (stats, sc):
             f.write(str(stats.HScore))
 
     
+def pause(sc):
+    paused = True
+    while paused:
+        sc.pouse_text()
+        sc.draw_pause()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    paused = False
+        pygame.display.update()
+        time.sleep(0.1)
 
+    
 
 
     
