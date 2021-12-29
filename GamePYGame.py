@@ -56,12 +56,12 @@ def run():
     NotLose = 1
 
     while True:
-        GameController.events(screen, gun, bullets, stats, Shot_Sound)
-        bg.output() #Отрисовка Фона
+        GameController.events(screen, gun, bullets, stats, Shot_Sound,sc)
+        bg.output() #РћС‚СЂРёСЃРѕРІРєР° Р¤РѕРЅР°
         sc.draw_score()
-        for bullet in bullets.sprites(): #Обнволение позиций пуль
+        for bullet in bullets.sprites(): #РћР±РЅРІРѕР»РµРЅРёРµ РїРѕР·РёС†РёР№ РїСѓР»СЊ
             bullet.update()    
-        for bullet in bullets.sprites(): #Отрисоква всех пуль
+        for bullet in bullets.sprites(): #РћС‚СЂРёСЃРѕРєРІР° РІСЃРµС… РїСѓР»СЊ
             bullet.draw()
         for alienShip in aliens.sprites():
             if alienShip.rect.y>=610:
@@ -83,7 +83,7 @@ def run():
             speedAli +=1
             sc.Your_LVL(speedAli)
             GameController.res(stats, screen, gun,aliens, bullets)
-        gun.update() #Обнволение позиций коробля игрока
+        gun.update() #РћР±РЅРІРѕР»РµРЅРёРµ РїРѕР·РёС†РёР№ РєРѕСЂРѕР±Р»СЏ РёРіСЂРѕРєР°
         if NotLose == 0:
             stats.StopB = True
             bullets.empty()
@@ -97,14 +97,14 @@ def run():
                 stats.res = True
         if stats.GoRes:
             run()
-        gun.output() #Отрисовка коробля игрока
-        aliens.draw(screen) #Отрисовка противника
-        GameController.bullets_cheker(aliens,stats, sc, bullets, speedAli, ShipDeadSound) #Запуск метода для проверки уничтожения противника
-        aliens.update(aliens, speedAli) #Обнволение позиций противника
+        gun.output() #РћС‚СЂРёСЃРѕРІРєР° РєРѕСЂРѕР±Р»СЏ РёРіСЂРѕРєР°
+        aliens.draw(screen) #РћС‚СЂРёСЃРѕРІРєР° РїСЂРѕС‚РёРІРЅРёРєР°
+        GameController.bullets_cheker(aliens,stats, sc, bullets, speedAli, ShipDeadSound) #Р—Р°РїСѓСЃРє РјРµС‚РѕРґР° РґР»СЏ РїСЂРѕРІРµСЂРєРё СѓРЅРёС‡С‚РѕР¶РµРЅРёСЏ РїСЂРѕС‚РёРІРЅРёРєР°
+        aliens.update(aliens, speedAli) #РћР±РЅРІРѕР»РµРЅРёРµ РїРѕР·РёС†РёР№ РїСЂРѕС‚РёРІРЅРёРєР°
         
         
-        pygame.display.flip() #Двойна буфиризация
+        pygame.display.flip() #Р”РІРѕР№РЅР° Р±СѓС„РёСЂРёР·Р°С†РёСЏ
 
-        clock.tick(FPS) #метод из pygame для фиксированой частоты кадров
+        clock.tick(FPS) #РјРµС‚РѕРґ РёР· pygame РґР»СЏ С„РёРєСЃРёСЂРѕРІР°РЅРѕР№ С‡Р°СЃС‚РѕС‚С‹ РєР°РґСЂРѕРІ
 
 run()
