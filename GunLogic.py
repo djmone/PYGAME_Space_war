@@ -5,7 +5,7 @@ BS_speed = 10
 
 class Gun():
     
-    def __init__(self, screen, stats): #Параметры Пушки
+    def __init__(self, screen, stats): #РџР°СЂР°РјРµС‚СЂС‹ РџСѓС€РєРё
         
         self.screen = screen
         self.image = pygame.image.load('Image/BattelShip.png')
@@ -21,7 +21,7 @@ class Gun():
         
     def output(self):
         self.screen.blit(self.image, self.rect)
-    def update(self): #Движение Пушки
+    def update(self): #Р”РІРёР¶РµРЅРёРµ РџСѓС€РєРё
         if self.MoveRight and self.rect.right < self.screen_rect.right-170:
             self.rect.centerx += BS_speed
         if self.MoveLeft and self.rect.left > 165:
