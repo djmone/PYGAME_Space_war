@@ -1,6 +1,6 @@
 import pygame
 
-class Bullet(pygame.sprite.Sprite): #Параметры пуль
+class Bullet(pygame.sprite.Sprite): #РџР°СЂР°РјРµС‚СЂС‹ РїСѓР»СЊ
     def __init__(self, screen, gun):
         super().__init__()
         self.screen = screen
