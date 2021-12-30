@@ -18,10 +18,9 @@ from ButtonLogic import Button
 screen = pygame.display.set_mode((1024, 896))
 clock = pygame.time.Clock()
 
-
-
+ItsRes = True
 def run():
-
+    global ItsRes
     pygame.init()
     pygame.mixer.music.load('Sound/BGSound.mp3')
     pygame.mixer.music.set_volume(0.01) #0.07
@@ -56,7 +55,7 @@ def run():
     aliens = Group()
     GameController.create_aliens(screen, aliens)
     stats = Statistic()
-    speedAli = 1
+    speedAli = 10
     sc = Score(screen, stats, speedAli)
     Timer = 0
 
@@ -65,7 +64,7 @@ def run():
     
     NotLose = 1
 
-    while button.GameNotQuit:
+    while button.GameNotQuit and ItsRes:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -120,7 +119,8 @@ def run():
             if Timer >=2:
                 stats.res = True
                 
-        if stats.GoRes:
+        if stats.GoRes and button.GameNotQuit:
+            ItsRes= False
             run()
         gun.output() #Отрисовка коробля игрока
         aliens.draw(screen) #Отрисовка противника
