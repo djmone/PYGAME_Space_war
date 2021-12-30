@@ -4,10 +4,6 @@ from AlienLogic  import Alien
 from MyStatistic import Statistic
 import time
 
-
-
-
-
 def events(screen, gun, bullets,stats,Shot_Sound,sc):
 
     for event in pygame.event.get():
