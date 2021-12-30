@@ -1,8 +1,10 @@
 import pygame, GameController
+from pygame import display
 from pygame.sprite import Group
 import time
 import sys
 import os
+import pygame.font
 
 
 
@@ -13,6 +15,7 @@ from bullet import Bullet
 from AlienLogic  import Alien
 from MyStatistic import Statistic
 from Raiting import Score
+from ButtonLogic import Button
 
 
 
@@ -23,7 +26,7 @@ def run():
 
     pygame.init()
     pygame.mixer.music.load('Sound/BGSound.mp3')
-    pygame.mixer.music.set_volume(0.07)
+    pygame.mixer.music.set_volume(0.07) #0.07
     pygame.mixer.music.play(-1)
     screen = pygame.display.set_mode((1024, 896))
     pygame.display.set_caption("Space Invaders v0.1")
@@ -35,12 +38,16 @@ def run():
     ShipDeadSound = pygame.mixer.Sound('Sound/ShipDead.wav')
     ShipDeadSound.set_volume(0.05)
 
+    BTSound = pygame.mixer.Sound('Sound/BTSound.mp3')
+    BTSound.set_volume(0.05)
+
     GOSound = pygame.mixer.Sound('Sound/GameOver.mp3')
     GOSound.set_volume(0.05)
 
     stats = Statistic()
     gun = Gun(screen, stats)
     bg = Bg(screen)
+    button = Button(100,50,screen)
     bullets = Group()
     aliens = Group()
     GameController.create_aliens(screen, aliens)
@@ -97,6 +104,8 @@ def run():
                 stats.res = True
         if stats.GoRes:
             run()
+        button.drawButton(200,200,"WOW", BTSound)
+        button.drawButton(400,400,"22", BTSound)
         gun.output() #Отрисовка коробля игрока
         aliens.draw(screen) #Отрисовка противника
         GameController.bullets_cheker(aliens,stats, sc, bullets, speedAli, ShipDeadSound) #Запуск метода для проверки уничтожения противника
@@ -108,3 +117,6 @@ def run():
         clock.tick(FPS) #метод из pygame для фиксированой частоты кадров
 
 run()
+
+
+
