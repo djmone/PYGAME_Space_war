@@ -17,8 +17,8 @@ from MyStatistic import Statistic
 from Raiting import Score
 from ButtonLogic import Button
 
-
-
+screen = pygame.display.set_mode((1024, 896))
+clock = pygame.time.Clock()
 
 
 
@@ -26,20 +26,26 @@ def run():
 
     pygame.init()
     pygame.mixer.music.load('Sound/BGSound.mp3')
-    pygame.mixer.music.set_volume(0.07) #0.07
+    pygame.mixer.music.set_volume(0.01) #0.07
     pygame.mixer.music.play(-1)
-    screen = pygame.display.set_mode((1024, 896))
+
+    BTSound = pygame.mixer.Sound('Sound/BTSound.mp3')
+    BTSound.set_volume(0.05)
+    
     pygame.display.set_caption("Space Invaders v0.1")
+
     bg_image = pygame.image.load('Image/BG_image.png')
+    
     
     Shot_Sound = pygame.mixer.Sound('Sound/Shot.wav')
     Shot_Sound.set_volume(0.05)
 
     ShipDeadSound = pygame.mixer.Sound('Sound/ShipDead.wav')
     ShipDeadSound.set_volume(0.05)
+    menu_BG = pygame.image.load('Image/BG_menu.jpg')
+    menu_BG = pygame.transform.scale(menu_BG,(menu_BG.get_width() * 1, menu_BG.get_height() * 1.05))
 
-    BTSound = pygame.mixer.Sound('Sound/BTSound.mp3')
-    BTSound.set_volume(0.05)
+    
 
     GOSound = pygame.mixer.Sound('Sound/GameOver.mp3')
     GOSound.set_volume(0.05)
@@ -47,7 +53,7 @@ def run():
     stats = Statistic()
     gun = Gun(screen, stats)
     bg = Bg(screen)
-    button = Button(100,50,screen)
+    button = Button(400,100,screen)
     bullets = Group()
     aliens = Group()
     GameController.create_aliens(screen, aliens)
@@ -56,13 +62,26 @@ def run():
     sc = Score(screen, stats, speedAli)
     Timer = 0
 
-    
 
     FPS=30
-    clock = pygame.time.Clock()
+    
     NotLose = 1
 
-    while True:
+    while button.GameNotQuit:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+        screen.blit(menu_BG,(-250,0))
+        button.drawButton(312,200,"Start", BTSound)
+        button.drawButton(312,400,"Quit", BTSound, quit)
+        Started = button.GameStarted
+        if Started:
+            break
+        pygame.display.flip()
+        clock.tick(FPS)
+
+
+    while button.GameNotQuit:
         GameController.events(screen, gun, bullets, stats, Shot_Sound,sc)
         bg.output() #Отрисовка Фона
         sc.draw_score()
@@ -102,10 +121,11 @@ def run():
             Timer +=1/FPS
             if Timer >=2:
                 stats.res = True
+                
         if stats.GoRes:
             run()
-        button.drawButton(200,200,"WOW", BTSound)
-        button.drawButton(400,400,"22", BTSound)
+        #button.drawButton(200,200,"WOW", BTSound)
+        #button.drawButton(400,400,"22", BTSound)
         gun.output() #Отрисовка коробля игрока
         aliens.draw(screen) #Отрисовка противника
         GameController.bullets_cheker(aliens,stats, sc, bullets, speedAli, ShipDeadSound) #Запуск метода для проверки уничтожения противника
@@ -116,6 +136,21 @@ def run():
 
         clock.tick(FPS) #метод из pygame для фиксированой частоты кадров
 
+
+def show_menu():
+    menu_BG = pygame.image.load('Image/BG_menu.jpg')
+    button = Button(100,50,screen)
+    #BTSound = pygame.mixer.Sound('Sound/BTSound.mp3')
+    #BTSound.set_volume(0.05)
+    #show = True
+    #while show:
+     #   for event in pygame.event.get():
+      #      if event.type == pygame.QUIT:
+      #          sys.exit()
+    #screen.blit(menu_bg,(0,0))
+    #start_BT.drawButton(200,200,"Start", BTSound)
+   # pygame.display.update()
+    #clock.tick(30)
 run()
 
 
