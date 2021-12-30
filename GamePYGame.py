@@ -29,7 +29,7 @@ def run():
     BTSound = pygame.mixer.Sound('Sound/BTSound.mp3')
     BTSound.set_volume(0.05)
     
-    pygame.display.set_caption("Space war")
+    pygame.display.set_caption("Space Invaders v0.1")
 
     bg_image = pygame.image.load('Image/BG_image.png')
     
