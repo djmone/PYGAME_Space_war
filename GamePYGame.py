@@ -2,8 +2,6 @@ import pygame, GameController
 from pygame import display
 from pygame.sprite import Group
 import time
-import sys
-import os
 import pygame.font
 
 
@@ -124,8 +122,6 @@ def run():
                 
         if stats.GoRes:
             run()
-        #button.drawButton(200,200,"WOW", BTSound)
-        #button.drawButton(400,400,"22", BTSound)
         gun.output() #Отрисовка коробля игрока
         aliens.draw(screen) #Отрисовка противника
         GameController.bullets_cheker(aliens,stats, sc, bullets, speedAli, ShipDeadSound) #Запуск метода для проверки уничтожения противника
@@ -137,20 +133,6 @@ def run():
         clock.tick(FPS) #метод из pygame для фиксированой частоты кадров
 
 
-def show_menu():
-    menu_BG = pygame.image.load('Image/BG_menu.jpg')
-    button = Button(100,50,screen)
-    #BTSound = pygame.mixer.Sound('Sound/BTSound.mp3')
-    #BTSound.set_volume(0.05)
-    #show = True
-    #while show:
-     #   for event in pygame.event.get():
-      #      if event.type == pygame.QUIT:
-      #          sys.exit()
-    #screen.blit(menu_bg,(0,0))
-    #start_BT.drawButton(200,200,"Start", BTSound)
-   # pygame.display.update()
-    #clock.tick(30)
 run()
 
 
