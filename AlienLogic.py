@@ -22,8 +22,6 @@ class Alien(pygame.sprite.Sprite):
         self.Right = True
         self.speed = 1
         
-
-
     def draw(self):
         self.screen.blit(self.image, self.rect)
 
